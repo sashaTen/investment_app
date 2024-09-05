@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/HP/Desktop/stock_app/mlruns/810014619874154904/3517c62497dd4435a59ec91ef2dcaf96/artifacts
+end_time: 1725505023663
+entry_point_name: ''
+experiment_id: '810014619874154904'
+lifecycle_stage: active
+run_id: 3517c62497dd4435a59ec91ef2dcaf96
+run_name: amazing-tern-714
+run_uuid: 3517c62497dd4435a59ec91ef2dcaf96
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1725505023005
+status: 4
+tags: []
+user_id: HP

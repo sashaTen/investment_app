@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/HP/Desktop/stock_app/mlruns/810014619874154904/8e593906c04847f4a9519d90eb2dfb5b/artifacts
+end_time: 1725505131643
+entry_point_name: ''
+experiment_id: '810014619874154904'
+lifecycle_stage: active
+run_id: 8e593906c04847f4a9519d90eb2dfb5b
+run_name: charming-calf-221
+run_uuid: 8e593906c04847f4a9519d90eb2dfb5b
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1725505122012
+status: 3
+tags: []
+user_id: HP

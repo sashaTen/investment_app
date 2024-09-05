@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/HP/Desktop/stock_app/mlruns/810014619874154904/5893d2a906724d2381a79cac3c921ba9/artifacts
+end_time: 1725504987197
+entry_point_name: ''
+experiment_id: '810014619874154904'
+lifecycle_stage: active
+run_id: 5893d2a906724d2381a79cac3c921ba9
+run_name: debonair-shad-113
+run_uuid: 5893d2a906724d2381a79cac3c921ba9
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1725504985951
+status: 4
+tags: []
+user_id: HP

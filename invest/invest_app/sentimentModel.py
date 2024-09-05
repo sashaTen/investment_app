@@ -1,10 +1,13 @@
 import pandas as pd
 import nltk
+from sklearn.tree import DecisionTreeClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, classification_report
 import joblib
+import mlflow
+import mlflow.sklearn
   # WordNet data (optional, for improved lemmatization)
 
 # Load the data
@@ -31,21 +34,26 @@ X_train_vec = vectorizer.fit_transform(X_train)
 X_test_vec = vectorizer.transform(X_test)
 
 # Initialize the RandomForestClassifier
-model = RandomForestClassifier(n_estimators=100, random_state=42)
-
+model = DecisionTreeClassifier()
+mlflow.set_experiment('SentimentAnalysisExperiment')
+with mlflow.start_run() as run:
 # Train the model
-model.fit(X_train_vec, y_train)
+    model.fit(X_train_vec, y_train)
+    y_pred = model.predict(X_test_vec)
+    example_input = vectorizer.transform(['This is a sample input'])
+    # Predict on the test set
+    accuracy = accuracy_score(y_test, y_pred)
+    y_pred = model.predict(X_test_vec)
+    mlflow.log_metric('accuracy', accuracy)
+    mlflow.sklearn.log_model(model, 'tree', input_example=example_input)
 
-# Predict on the test set
-y_pred = model.predict(X_test_vec)
 
-# Print accuracy and classification report
-print(f'Accuracy: {accuracy_score(y_test, y_pred)}')
-print('Classification Report:')
-print(classification_report(y_test, y_pred))
 
+'''
 joblib.dump(model, 'sentiment_model.pkl')
 joblib.dump(vectorizer, 'vectorizer.pkl')
+'''
+
 
 # Load the model and vectorizer
 
