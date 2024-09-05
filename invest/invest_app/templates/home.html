@@ -6,7 +6,14 @@
     <title>Document</title>
 </head>
 <body>
-    hello 
+    enter the  sentiment
+    <form action="{% url 'sentimentResult' %}" method="post">
+        {% csrf_token %}
+        <label for="sentiment">sentiment:</label>
+        <input type="sentiment"  id="sentiment" name="sentiment" required><br><br>
+    
+     
+    </form>    <!---->
     
 </body>
 </html>
