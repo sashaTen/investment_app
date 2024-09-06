@@ -18,7 +18,7 @@ df = pd.read_csv('https://raw.githubusercontent.com/surge-ai/stock-sentiment/mai
 
 # Function to preprocess and vectorize the text data
 
-
+#C:\Program Files\Python311\Scripts
 
 
 
@@ -34,7 +34,7 @@ X_train_vec = vectorizer.fit_transform(X_train)
 X_test_vec = vectorizer.transform(X_test)
 
 # Initialize the RandomForestClassifier
-model = DecisionTreeClassifier()
+model = RandomForestClassifier()
 mlflow.set_experiment('SentimentAnalysisExperiment')
 with mlflow.start_run() as run:
 # Train the model
