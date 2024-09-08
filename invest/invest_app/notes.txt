@@ -8,4 +8,6 @@ logging, registering, and loading of a model for inference.
 * you  need  to  look  up  what  is   important  to log 
 in order  to recreate  the   experements 
 
-* 
+* you  can   just   download the  model  and    artifacts and then 
+just  use   paths   to  your  local  machine   for  reference   
+
