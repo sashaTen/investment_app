@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/HP/Desktop/stock_app/mlruns/810014619874154904/f7b48d0c6cb841e3ac463e44813124a2/artifacts
+end_time: 1725774274388
+entry_point_name: ''
+experiment_id: '810014619874154904'
+lifecycle_stage: active
+run_id: f7b48d0c6cb841e3ac463e44813124a2
+run_name: clumsy-zebra-235
+run_uuid: f7b48d0c6cb841e3ac463e44813124a2
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1725774250870
+status: 3
+tags: []
+user_id: HP

@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/HP/Desktop/stock_app/mlruns/810014619874154904/bced7c19e1eb469fba59d17ea2045c2c/artifacts
+end_time: 1725776758047
+entry_point_name: ''
+experiment_id: '810014619874154904'
+lifecycle_stage: active
+run_id: bced7c19e1eb469fba59d17ea2045c2c
+run_name: nimble-moose-287
+run_uuid: bced7c19e1eb469fba59d17ea2045c2c
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1725776747639
+status: 4
+tags: []
+user_id: HP

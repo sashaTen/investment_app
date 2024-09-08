@@ -1,0 +1,11 @@
+*essential core APIs of MLflow Tracking:
+logging, registering, and loading of a model for inference.
+
+*you can    log   hyperparams  and   loss  metrics .
+
+* also   you can  save the  vectoriaer  for  text  preproccessing  
+
+* you  need  to  look  up  what  is   important  to log 
+in order  to recreate  the   experements 
+
+* 

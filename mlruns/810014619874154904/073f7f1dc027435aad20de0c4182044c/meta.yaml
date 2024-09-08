@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/HP/Desktop/stock_app/mlruns/810014619874154904/073f7f1dc027435aad20de0c4182044c/artifacts
+end_time: 1725776398504
+entry_point_name: ''
+experiment_id: '810014619874154904'
+lifecycle_stage: active
+run_id: 073f7f1dc027435aad20de0c4182044c
+run_name: defiant-yak-28
+run_uuid: 073f7f1dc027435aad20de0c4182044c
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1725776398018
+status: 4
+tags: []
+user_id: HP

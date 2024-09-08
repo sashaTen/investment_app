@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/HP/Desktop/stock_app/mlruns/810014619874154904/2d07ffb4752f4279a1bfc2d155777b41/artifacts
+end_time: 1725779442951
+entry_point_name: ''
+experiment_id: '810014619874154904'
+lifecycle_stage: active
+run_id: 2d07ffb4752f4279a1bfc2d155777b41
+run_name: enthused-smelt-341
+run_uuid: 2d07ffb4752f4279a1bfc2d155777b41
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1725779424721
+status: 3
+tags: []
+user_id: HP

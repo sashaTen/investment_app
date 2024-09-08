@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/HP/Desktop/stock_app/invest/mlruns/882461478121709934/5ae785632bd1460c8c02e0285edd4998/artifacts
+end_time: 1725778942483
+entry_point_name: ''
+experiment_id: '882461478121709934'
+lifecycle_stage: active
+run_id: 5ae785632bd1460c8c02e0285edd4998
+run_name: calm-penguin-464
+run_uuid: 5ae785632bd1460c8c02e0285edd4998
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1725778921945
+status: 3
+tags: []
+user_id: HP

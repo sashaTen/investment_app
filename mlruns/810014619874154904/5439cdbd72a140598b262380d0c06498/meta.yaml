@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/HP/Desktop/stock_app/mlruns/810014619874154904/5439cdbd72a140598b262380d0c06498/artifacts
+end_time: 1725776870883
+entry_point_name: ''
+experiment_id: '810014619874154904'
+lifecycle_stage: active
+run_id: 5439cdbd72a140598b262380d0c06498
+run_name: beautiful-gnat-586
+run_uuid: 5439cdbd72a140598b262380d0c06498
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1725776850046
+status: 3
+tags: []
+user_id: HP

@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/HP/Desktop/stock_app/invest/mlruns/882461478121709934/f4d211ffbe1d446ba62ca248d8ed7696/artifacts
+end_time: 1725779113177
+entry_point_name: ''
+experiment_id: '882461478121709934'
+lifecycle_stage: active
+run_id: f4d211ffbe1d446ba62ca248d8ed7696
+run_name: adaptable-calf-274
+run_uuid: f4d211ffbe1d446ba62ca248d8ed7696
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1725779088689
+status: 3
+tags: []
+user_id: HP

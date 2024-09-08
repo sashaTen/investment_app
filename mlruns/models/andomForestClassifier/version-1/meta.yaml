@@ -1,0 +1,14 @@
+aliases: []
+creation_timestamp: 1725776870793
+current_stage: None
+description: null
+last_updated_timestamp: 1725776870793
+name: andomForestClassifier
+run_id: 5439cdbd72a140598b262380d0c06498
+run_link: null
+source: file:///C:/Users/HP/Desktop/stock_app/mlruns/810014619874154904/5439cdbd72a140598b262380d0c06498/artifacts/sentiment_model
+status: READY
+status_message: null
+storage_location: file:///C:/Users/HP/Desktop/stock_app/mlruns/810014619874154904/5439cdbd72a140598b262380d0c06498/artifacts/sentiment_model
+user_id: null
+version: 1

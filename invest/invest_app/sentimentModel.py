@@ -1,5 +1,7 @@
 import pandas as pd
 import nltk
+import  random
+from sklearn.linear_model import LogisticRegression
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import CountVectorizer
@@ -8,6 +10,7 @@ from sklearn.metrics import accuracy_score, classification_report
 import joblib
 import mlflow
 import mlflow.sklearn
+from mlflow.models import infer_signature
   # WordNet data (optional, for improved lemmatization)
 
 # Load the data
@@ -32,9 +35,15 @@ X_train_vec = vectorizer.fit_transform(X_train)
 
 # Transform the test data
 X_test_vec = vectorizer.transform(X_test)
-
+params = {
+    'n_estimators': random.randint(10, 200),         # Number of trees in the forest  # Maximum depth of the tree
+    'min_samples_split': random.randint(2, 10),      # Minimum number of samples required to split an internal node
+    'min_samples_leaf': random.randint(1, 10),       # Minimum number of samples required to be at a leaf node
+    'max_features': random.choice(['auto', 'sqrt', 'log2', None]),  # Number of features to consider when looking for the best split
+    # Whether bootstrap samples are used when building trees
+}
 # Initialize the RandomForestClassifier
-model = RandomForestClassifier()
+model = LogisticRegression()
 mlflow.set_experiment('SentimentAnalysisExperiment')
 with mlflow.start_run() as run:
 # Train the model
@@ -42,11 +51,20 @@ with mlflow.start_run() as run:
     y_pred = model.predict(X_test_vec)
     example_input = vectorizer.transform(['This is a sample input'])
     # Predict on the test set
+    signature = infer_signature(X_train_vec, model.predict(X_train_vec))
     accuracy = accuracy_score(y_test, y_pred)
     y_pred = model.predict(X_test_vec)
     mlflow.log_metric('accuracy', accuracy)
-    mlflow.sklearn.log_model(model, 'tree', input_example=example_input)
-
+    mlflow.sklearn.log_model(model, ' RandomForestClassifier', input_example=example_input)
+    mlflow.set_tag("Training Info", "Basic  model for  sentiment ")
+    mlflow.log_artifact(r"C:\Users\HP\Desktop\stock_app\invest\vectorizer.pkl", artifact_path="preprocessing")
+    model_info = mlflow.sklearn.log_model(
+        sk_model=model,
+        artifact_path="sentiment_model_logistic",
+        signature=signature,
+        input_example=example_input,
+        registered_model_name="logistic  Classifier",
+    )
 
 
 '''
@@ -55,9 +73,3 @@ joblib.dump(vectorizer, 'vectorizer.pkl')
 '''
 
 
-# Load the model and vectorizer
-
-
-# Example text for inference
-
-# Transform the example text
