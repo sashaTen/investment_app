@@ -57,7 +57,8 @@ with mlflow.start_run() as run:
     mlflow.log_metric('accuracy', accuracy)
     mlflow.sklearn.log_model(model, ' RandomForestClassifier', input_example=example_input)
     mlflow.set_tag("Training Info", "Basic  model for  sentiment ")
-    mlflow.log_artifact(r"C:\Users\HP\Desktop\stock_app\invest\vectorizer.pkl", artifact_path="preprocessing")
+    #mlflow.log_artifact(r"C:\Users\HP\Desktop\stock_app\invest\vectorizer.pkl", artifact_path="preprocessing")
+    #mlflow.log_artifact(r"C:\Users\HP\Desktop\stock_app\invest\sentiment_model.pkl", artifact_path="model")
     model_info = mlflow.sklearn.log_model(
         sk_model=model,
         artifact_path="sentiment_model_logistic",

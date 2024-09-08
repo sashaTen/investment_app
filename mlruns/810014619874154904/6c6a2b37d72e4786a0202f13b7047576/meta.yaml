@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/HP/Desktop/stock_app/mlruns/810014619874154904/6c6a2b37d72e4786a0202f13b7047576/artifacts
+end_time: 1725782118646
+entry_point_name: ''
+experiment_id: '810014619874154904'
+lifecycle_stage: active
+run_id: 6c6a2b37d72e4786a0202f13b7047576
+run_name: peaceful-hare-991
+run_uuid: 6c6a2b37d72e4786a0202f13b7047576
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1725782101043
+status: 3
+tags: []
+user_id: HP

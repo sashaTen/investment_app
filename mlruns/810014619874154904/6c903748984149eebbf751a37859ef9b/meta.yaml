@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/HP/Desktop/stock_app/mlruns/810014619874154904/6c903748984149eebbf751a37859ef9b/artifacts
+end_time: 1725780913634
+entry_point_name: ''
+experiment_id: '810014619874154904'
+lifecycle_stage: active
+run_id: 6c903748984149eebbf751a37859ef9b
+run_name: masked-jay-342
+run_uuid: 6c903748984149eebbf751a37859ef9b
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1725780913506
+status: 3
+tags: []
+user_id: HP
