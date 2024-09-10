@@ -1,4 +1,9 @@
 --finish  the  mlops  on one model   with  monitoring. 
+then  for  every  step  and   tool   try  to   read  the  introduction   into 
+them  and  generate   practice   idea  .  for  example   they  say  
+that  orchestra  is   helpful  for   ... and the versioning  is  for ...  bla  and  then 
+re-create situations   so  you  value  those tools  / concepts and practices .  
+
 then   try  other   models   and   finish   the  app
 --maybe     i  dont  need  to  find the perfections 
 just  build   app  that  analyses   portfolio  
