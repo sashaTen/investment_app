@@ -1,0 +1,13 @@
+--finish  the  mlops  on one model   with  monitoring. 
+then   try  other   models   and   finish   the  app
+--maybe     i  dont  need  to  find the perfections 
+just  build   app  that  analyses   portfolio  
+then   baesds  on that   it   has  to  build 
+the good reccomendation  of the stocks 
+--build  app  and  then   on  top  of   it   research  in  depth  
+the  stocks  and  investment theory  as well  as   
+finance  and  business  and the  software   enginneering.    
+--industry/sector and  economy   outlook   based  on   nlp   
+--or  maybe    potential   based   optimization .  
+--it is good to learn the  tool  and read  about   it  so  
+you  are  fimiliar   .   
