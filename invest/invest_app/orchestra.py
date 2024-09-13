@@ -34,6 +34,8 @@ def train_model(preprocessed_data: dict) -> MultinomialNB:
     
     return model
 
+
+
 @step
 def evaluate_model(model: MultinomialNB, preprocessed_data: dict) -> None:
     """Evaluates the model and prints the accuracy."""
@@ -52,6 +54,8 @@ def sentiment_analysis_pipeline():
     preprocessed_data = preprocess_data(data)
     model = train_model(preprocessed_data)
     evaluate_model(model, preprocessed_data)
+
+
 
 if __name__ == "__main__":
     pipeline_run = sentiment_analysis_pipeline()

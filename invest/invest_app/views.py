@@ -20,7 +20,7 @@ def  sentimentResult(request):
     with open(loaded_model_path, "rb") as c:
         loaded_model = pickle.load(c)
     # Load the model from MLflow
-    
+     
     
     
     sentiment = request.POST['sentiment']
@@ -32,3 +32,6 @@ def  sentimentResult(request):
 
 # Output the prediction
     return HttpResponse(f'Predicted sentiment: {prediction[0]}')
+
+
+

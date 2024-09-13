@@ -64,3 +64,5 @@ and   in   next  step     is  is  the   input
 .dict is the return type of load_data(), which means that when this function is called, it produces a dictionary object.
 load_data(): Produces a dictionary containing the training data and labels.
 train_model(data: dict): Accepts this dictionary as its input, processes it, and then performs some operation (in this case, a mock training process).
+
+*it's perfectly fine to define separate pipelines for different tasks like training and inference.
