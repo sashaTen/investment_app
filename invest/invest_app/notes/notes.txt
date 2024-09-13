@@ -11,3 +11,56 @@ in order  to recreate  the   experements
 * you  can   just   download the  model  and    artifacts and then 
 just  use   paths   to  your  local  machine   for  reference   
 
+* In the quest for production-ready ML models, workflows can quickly become complex.
+that  is   why  zenml  simplifies  the   proccess .
+ -data  sources  and  formats  and   tools   for  tpreproccessing  them   can  change 
+- maybe the way you  prerpared the features  was  wrong  so the 
+and   now   you   do  it   diffrerntly 
+-eval mwethod might  be  added  like the explainability  metrics 
+-best practices, from modularizing your pipeline to using the right tools for version control, monitoring, and orchestration. The key is to automate as much as possible, ensuring that your models are
+ not only performant but also maintainable over time.
+ -Leveraging ZenML, you can create and manage robust, 
+ scalable machine learning (ML) pipelines.
+  Whether for data preparation, model training, or deploying predictions, ZenML standardizes and streamlines the process, 
+ ensuring reproducibility and efficiency.
+- Summary
+ZenML  is scalable, reproducible, robust, and efficient. how   ? 
+scasling    the   modules   aka  steps 
+is  eaiser .  for  example    you  may have  5 steps   
+but  if the proccess    has   new  steps  you   just  
+integrate  new  step .  as well  as   changes  can  be dome   only 
+  in the step   itself .   you also  can  check   every  step  
+  independently.
+  steps can be updated or replaced independently without affecting the entire system.
+  -also you  can  reproduce  by  checking the versions of 
+  the   everything   .   
+-ZenML automates this entire workflow  so   effeicent 
+- when    you  run  zenml  in  the    termianl   it  says  
+all  about user   single  or   many  
+,  stack    of  tools  and  artifacts 
+, if the   data or   model   were    chenged
+if  not   it  uses the  caching    whcih   
+the   latest   versions  of the   them 
+which   allows  the   fast   training . 
+shows    time   of  training.
+-def load_data() -> dict:
+    """Simulates loading of training data and labels."""
+
+    training_data = [[1, 2], [3, 4], [5, 6]]
+    labels = [0, 1, 0]
+    
+    return {'features': training_data, 'labels': labels}
+
+@step
+def train_model(data: dict) -> None:
+
+in  abpve   you  see that 
+.dict  is the   return  of the function  of   step 
+.in here train_model(data: dict) .  the  data  is the generic 
+function   input  used   later   and   dict   is  actual   input.   
+. so    in  the step   you  say  that  output   which  is return   
+and   in   next  step     is  is  the   input 
+
+.dict is the return type of load_data(), which means that when this function is called, it produces a dictionary object.
+load_data(): Produces a dictionary containing the training data and labels.
+train_model(data: dict): Accepts this dictionary as its input, processes it, and then performs some operation (in this case, a mock training process).
