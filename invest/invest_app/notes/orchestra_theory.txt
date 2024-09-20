@@ -1,0 +1,50 @@
+--(MLO) helps implement and manage such pipelines
+ as smoothly running workflows from start to finish.
+writing  automated tests  for   each   module . 
+-- typical ML pipeline  and the purposes: 
+Data featurization :   need to implement feature stores
+ML model training :  
+Model evaluation :  model is re-deployed on a regular basis,
+ we need to ensure a newly trained instance performs better,
+ or at least as well as, the established model.
+Model saving :
+Model monitoring:  Signaling  if    something    is  wrong and 
+need   for the   retraining 
+
+
+--in gemeral   ml  prodcutions   consists   of   3  :
+1   model dveelopemnt 
+2   operations  :  making  all scalable ,reliable .
+3   orchestra : scheduling , versioning ,  monitoring , 
+Governance. 
+ 
+ --questions before productions : 
+ 1 What does the pipeline look like and  data flow  ?
+ 2 How does the ML pipeline 
+ fit into our other production services/systems? 
+ 3 training environment vs production env? 
+ 4 Will our model still work well when 
+ we go from thousands of data records to hundreds of thousands?
+ 5 How available is the service to the end?
+ 6 What can go wrong with the ML model in its production environment?
+
+ --  only   answering   on  those   questions   
+ you  staRT  working 
+ -- eight components to orchestrating :
+.Scheduling : retrain the  model  or  even  some   modules.
+.Syncing   :   which  making   sure that   order 
+async  and  sync   parts  work well .   
+.CI/CD and testing:   automated  tests  and  integrationa  with  deploy  are   very   important 
+.Saving & versioning: 
+.Retention and cleanup schedule: keep  only  relevant artifavcts  and 
+model   versions  and   clenup   .  so  automate  it .   
+so the  feature  and  model  store  have  space . 
+.Monitoring  :   you  monitor   3  : 
+1   model  perfomance 
+2  data  drift 
+3  concents drift
+.System health and reliability tracking:
+.Governance and Observability:So far we’ve discussed how a production ML pipeline works,
+ but not how to know or what to do when it doesn’t. 
+ HAVE  seesvral pipelines  for  backuo  the    base model.
+ 
