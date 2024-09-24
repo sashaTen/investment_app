@@ -55,3 +55,5 @@ ZenML: Focuses on the development of reproducible workflows, which helps teams c
 MLflow: Facilitates collaboration through experiment tracking and model sharing, making it easy for teams to work with the same models and results.
 Conclusion
 Using both ZenML and MLflow can provide a comprehensive solution for managing machine learning workflows. ZenML excels at building and orchestrating pipelines, while MLflow offers specialized tools for experiment tracking, model management, and deployment. By integrating both tools, you can enhance your machine learning project’s scalability, reproducibility, and efficiency, ensuring a smoother workflow from development to production.
+
+*   ci    /  cd    
