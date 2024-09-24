@@ -2,11 +2,16 @@ from django.shortcuts import render
 import   joblib
 # Create your views here.
 from django.http import HttpResponse
-
 import pickle
 import mlflow
 import mlflow.pyfunc
+from zenml.client import Client
 
+vectorizer_artifact = Client().get_artifact_version('ae428915-e9f8-46ad-80a3-f223ebb4e6ce')
+vectorizer = vectorizer_artifact.load()
+
+model_artifact = Client().get_artifact_version('6a4a2d3b-8ba9-4248-9c4e-752080717532')
+model = model_artifact.load()
 
 
 def sentiment(request):
@@ -25,13 +30,16 @@ def  sentimentResult(request):
     
     sentiment = request.POST['sentiment']
     sentiment =  [sentiment]
-    sentiment_vectorized = loaded_vectorizer.transform(sentiment)
+    sentiment_vectorized = vectorizer.transform(sentiment)
 
 # Make a prediction
-    prediction = loaded_model.predict(sentiment_vectorized)
+   
+    #prediction = make_prediction(loaded_model, sentiment_vectorized)
+    prediction = model.predict(sentiment_vectorized)
+    
 
 # Output the prediction
-    return HttpResponse(f'Predicted sentiment: {prediction[0]}')
+    return HttpResponse(f'Predicted sentiment: {prediction}')
 
 
 
