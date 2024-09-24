@@ -11,189 +11,47 @@ in order  to recreate  the   experements
 * you  can   just   download the  model  and    artifacts and then 
 just  use   paths   to  your  local  machine   for  reference   
 
-* In the quest for production-ready ML models, workflows can quickly become complex.
-that  is   why  zenml  simplifies  the   proccess .
- -data  sources  and  formats  and   tools   for  tpreproccessing  them   can  change 
-- maybe the way you  prerpared the features  was  wrong  so the 
-and   now   you   do  it   diffrerntly 
--eval mwethod might  be  added  like the explainability  metrics 
--best practices, from modularizing your pipeline to using the right tools for version control, monitoring, and orchestration. The key is to automate as much as possible, ensuring that your models are
- not only performant but also maintainable over time.
- -Leveraging ZenML, you can create and manage robust, 
- scalable machine learning (ML) pipelines.
-  Whether for data preparation, model training, or deploying predictions, ZenML standardizes and streamlines the process, 
- ensuring reproducibility and efficiency.
-- Summary
-ZenML  is scalable, reproducible, robust, and efficient. how   ? 
-scasling    the   modules   aka  steps 
-is  eaiser .  for  example    you  may have  5 steps   
-but  if the proccess    has   new  steps  you   just  
-integrate  new  step .  as well  as   changes  can  be dome   only 
-  in the step   itself .   you also  can  check   every  step  
-  independently.
-  steps can be updated or replaced independently without affecting the entire system.
-  -also you  can  reproduce  by  checking the versions of 
-  the   everything   .   
--ZenML automates this entire workflow  so   effeicent 
-- when    you  run  zenml  in  the    termianl   it  says  
-all  about user   single  or   many  
-,  stack    of  tools  and  artifacts 
-, if the   data or   model   were    chenged
-if  not   it  uses the  caching    whcih   
-the   latest   versions  of the   them 
-which   allows  the   fast   training . 
-shows    time   of  training.
--def load_data() -> dict:
-    """Simulates loading of training data and labels."""
+* Tuple[pd.Series, pd.Series, pd.Series, pd.Series]   is   
+X_train, X_test, y_train, y_test
 
-    training_data = [[1, 2], [3, 4], [5, 6]]
-    labels = [0, 1, 0]
-    
-    return {'features': training_data, 'labels': labels}
+*  what   you  return  is  the   output
+in the  zen ml  server 
 
-@step
-def train_model(data: dict) -> None:
+*then   you   train  the   pipeline  and 
+you can  use  the models    by loading  in  similar    
+way  you do  with   mlflow : 
+ vectorizer_artifact = Client().get_artifact_version('ae428915-e9f8-46ad-80a3-f223ebb4e6ce')
+    vectorizer = vectorizer_artifact.load()
 
-in  abpve   you  see that 
-.dict  is the   return  of the function  of   step 
-.in here train_model(data: dict) .  the  data  is the generic 
-function   input  used   later   and   dict   is  actual   input.   
-. so    in  the step   you  say  that  output   which  is return   
-and   in   next  step     is  is  the   input 
-
-.dict is the return type of load_data(), which means that when this function is called, it produces a dictionary object.
-load_data(): Produces a dictionary containing the training data and labels.
-train_model(data: dict): Accepts this dictionary as its input, processes it, and then performs some operation (in this case, a mock training process).
-
-*it's perfectly fine to define separate pipelines for different tasks like training and inference.
+    model_artifact = Client().get_artifact_version('6a4a2d3b-8ba9-4248-9c4e-752080717532')
+    model = model_artifact.load()
+    sentiment = request.POST['sentiment']
+    sentiment =  [sentiment]
+    sentiment_vectorized = vectorizer.transform(sentiment)
+    prediction = model.predict(sentiment_vectorized)
 
 
-*   this is   the  good   method   
-for the   testing  oif  the  step  is  done  :
-
-if __name__ == "__main__":
-    loaded_vectorizer, loaded_model = load_artifacts()
-    sentiment =   "positive"
-    sentiment_vectorized = preprocess_data(loaded_vectorizer, sentiment)
-    print('done')
+below  is the  practice   inspiration  
+for the   zenml and  mlflow 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-'''
-from zenml import pipeline, step
-import pandas as pd
-from zenml.client import Client
-import  numpy 
-from sklearn.linear_model import LogisticRegression
-from sklearn.feature_extraction.text import CountVectorizer
-from sklearn.naive_bayes import MultinomialNB
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score
-import pickle
-from scipy.sparse import csr_matrix
-from sklearn.feature_extraction.text import CountVectorizer
-@step
-def load_data() -> pd.DataFrame:
-    """Loads a sample sentiment dataset."""
-    data = {
-        'text': ["I love this product!", "This is the worst service ever.", "I am so happy with the results.", "This is terrible."],
-        'sentiment': [1, 0, 1, 0]
-    }
-    df = pd.DataFrame(data)
-    return df
-
-@step
-def preprocess_data(data: pd.DataFrame) -> dict:
-    """Preprocesses the text data into features."""
-    vectorizer = CountVectorizer()
-    X = vectorizer.fit_transform(data['text']).toarray()
-    y = data['sentiment']
-    return {'features': X, 'labels': y, 'vectorizer': vectorizer}
-
-@step
-def train_model(preprocessed_data: dict) -> MultinomialNB:
-    """Trains a Naive Bayes classifier."""
-    X_train, X_test, y_train, y_test = train_test_split(
-        preprocessed_data['features'], preprocessed_data['labels'], test_size=0.2, random_state=42)
-    
-    model = MultinomialNB()
-    model.fit(X_train, y_train)
-    
-    return model
-
-
-
-@step
-def evaluate_model(model: MultinomialNB, preprocessed_data: dict) -> None:
-    """Evaluates the model and prints the accuracy."""
-    X_train, X_test, y_train, y_test = train_test_split(
-        preprocessed_data['features'], preprocessed_data['labels'], test_size=0.2, random_state=42)
-    
-    predictions = model.predict(X_test)
-    accuracy = accuracy_score(y_test, predictions)
-    
-    print(f"Model Accuracy: {accuracy * 100:.2f}%")
-
-@pipeline
-def sentiment_analysis_pipeline():
-    """Defines the sentiment analysis pipeline."""
-    data = load_data()
-    preprocessed_data = preprocess_data(data)
-    model = train_model(preprocessed_data)
-    evaluate_model(model, preprocessed_data)
-
-
-@step
-def load_text_vectorizer() ->CountVectorizer:
-    vectorizer_path = r"C:\Users\HP\Desktop\cyber\cyber\vectorizer.pkl"
-    with open(vectorizer_path, "rb") as f:
-        loaded_vectorizer = pickle.load(f)
-    
-   
-    
-    return loaded_vectorizer
-
-@step
-def load_model()->LogisticRegression:
-     model_path = r"C:\Users\HP\Desktop\cyber\cyber\model.pkl"
-     with open(model_path, "rb") as f:
-        loaded_model = pickle.load(f)
-     return  loaded_model   
-
-
-@step
-def preprocess_text(loaded_vectorizer: CountVectorizer, sentiment: str) -> csr_matrix:
-    sentiment_vectorized = loaded_vectorizer.transform([sentiment])
-    return sentiment_vectorized
-
-
-@step
-def make_prediction(loaded_model:LogisticRegression , sentiment_vectorized:csr_matrix ) -> numpy.ndarray:
-    prediction = loaded_model.predict(sentiment_vectorized)
-    print(prediction)
-    return prediction
-
-@pipeline
-def inference_pipeline(sentiment: str):
-    loaded_vectorizer = load_text_vectorizer()
-    loaded_model   = load_model()
-    sentiment_vectorized = preprocess_text(loaded_vectorizer, sentiment)
-    prediction = make_prediction(loaded_model, sentiment_vectorized)
-    return prediction
-
-# Example sentiment input
+1. Focus and Purpose
+ZenML: Primarily designed for creating reproducible, scalable, and robust ML pipelines. It emphasizes pipeline orchestration and integration with various tools and environments.
+MLflow: A comprehensive tool for managing the entire machine learning lifecycle, including experiment tracking, model versioning, and deployment.
+2. Experiment Tracking
+ZenML: Provides basic experiment tracking through its pipeline components but may not have as rich a set of features as MLflow specifically for tracking and visualizing experiments.
+MLflow: Offers a robust experiment tracking interface, allowing you to log metrics, parameters, and artifacts easily, with an intuitive UI for comparison.
+3. Model Registry
+ZenML: Focuses on building and managing pipelines rather than serving as a model registry.
+MLflow: Includes a dedicated model registry where you can manage model versions, track lineage, and deploy models seamlessly.
+4. Integration Flexibility
+ZenML: Aims to integrate various tools in the ML ecosystem, providing a standardized way to work with different libraries and frameworks.
+MLflow: Works well as a standalone tool for tracking and managing models, and it can be integrated into ZenML pipelines as needed.
+5. Deployment Features
+ZenML: Supports the orchestration of deployment workflows but may not provide the same depth of deployment capabilities as MLflow.
+MLflow: Offers model serving capabilities, allowing you to deploy models as REST APIs easily.
+6. Collaboration and Sharing
+ZenML: Focuses on the development of reproducible workflows, which helps teams collaborate on pipeline development.
+MLflow: Facilitates collaboration through experiment tracking and model sharing, making it easy for teams to work with the same models and results.
+Conclusion
+Using both ZenML and MLflow can provide a comprehensive solution for managing machine learning workflows. ZenML excels at building and orchestrating pipelines, while MLflow offers specialized tools for experiment tracking, model management, and deployment. By integrating both tools, you can enhance your machine learning project’s scalability, reproducibility, and efficiency, ensuring a smoother workflow from development to production.
