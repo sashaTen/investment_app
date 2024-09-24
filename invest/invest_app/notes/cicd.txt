@@ -30,4 +30,4 @@ jobs:
         python manage.py test
 
 
-        this  is the   set  up   
+        this  is the   set  up  ao  today   i will  only   check  the  ci   
