@@ -1,0 +1,14 @@
+aliases: []
+creation_timestamp: 1728014720964
+current_stage: None
+description: null
+last_updated_timestamp: 1728014720964
+name: logistic  Classifier
+run_id: 3e34bb7652ce4d7984b7819d0f62716f
+run_link: null
+source: file:///C:/Users/HP/Desktop/stock_app/mlruns/810014619874154904/3e34bb7652ce4d7984b7819d0f62716f/artifacts/sentiment_model_logistic
+status: READY
+status_message: null
+storage_location: file:///C:/Users/HP/Desktop/stock_app/mlruns/810014619874154904/3e34bb7652ce4d7984b7819d0f62716f/artifacts/sentiment_model_logistic
+user_id: null
+version: 5

@@ -1,6 +1,7 @@
 import pandas as pd
 import nltk
 import  random
+from sklearn.tree import DecisionTreeClassifier
 from sklearn.linear_model import LogisticRegression
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.model_selection import train_test_split
@@ -43,7 +44,7 @@ params = {
     # Whether bootstrap samples are used when building trees
 }
 # Initialize the RandomForestClassifier
-model = LogisticRegression()
+model =  DecisionTreeClassifier()
 mlflow.set_experiment('SentimentAnalysisExperiment')
 with mlflow.start_run() as run:
 # Train the model

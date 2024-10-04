@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/HP/Desktop/stock_app/mlruns/810014619874154904/84a762535635428b8dd885c6d913e687/artifacts
+end_time: 1728014378927
+entry_point_name: ''
+experiment_id: '810014619874154904'
+lifecycle_stage: active
+run_id: 84a762535635428b8dd885c6d913e687
+run_name: delightful-midge-225
+run_uuid: 84a762535635428b8dd885c6d913e687
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1728014350292
+status: 3
+tags: []
+user_id: HP

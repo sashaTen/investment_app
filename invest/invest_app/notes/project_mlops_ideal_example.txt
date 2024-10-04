@@ -11,3 +11,76 @@
 --Model Monitoring  accuracy, precision, and latency in production.
 --Drift Detection: Implement mechanisms to detect model drift (when the model starts to degrade in performance).
 --Retraining and Updating: Set up automated retraining pipelines that trigger when new data or model drift is detected.
+
+
+
+MLOps highlights automation,
+traceability, reproducibility,
+and quality assurance within 
+machine learning pipelines 
+and model development.
+
+Data extraction and storage
+Data labeling
+Data validation and data cleaning
+Data and code versioning
+Exploratory Data Analysis (EDA)
+Data preprocessing and feature engineering
+Model training and experiment tracking
+Model evaluation
+Model validation
+Model serving
+Model monitoring
+Automated model retraining
+Testing
+Documentation
+
+level  0   : 
+ml  aside  from  ops   
+only  developing the   model
+
+level 1  : 
+automaition
+It ensures that the model can automatically 
+retrain with new data, 
+making predictions continuously 
+and adjusting to changes over time.
+
+
+Fast Experimentation: You can try 
+different approaches and 
+models quickly because the whole process 
+(like data preparation, training, and testing) is automated. 
+If one model doesn’t work well, you can easily switch to another.
+for  ex :  you  may  have   the  hypothesis  that  the  new  model 
+should   be  tested   on  new  data .    
+
+Automatic Training in Production: 
+
+Once the model is in production (the real-world environment), 
+it can retrain itself automatically when it gets new data.
+
+
+Reusable Components: The parts of the pipeline 
+are modular, meaning they can be reused for 
+different models. For instance, if you have 
+several models, you don’t need to build everything 
+from scratch each time; you can reuse 
+components like data processing steps.
+
+
+Extra Components:
+Data and Model Validation: 
+The pipeline automatically checks if 
+the new data and models are valid 
+and makes sure everything works 
+before deploying the model.
+Feature Store: A place to store 
+and reuse important features 
+(like customer information or product details)
+ that are used to train the models.
+
+
+Master Version Control    like   git  and  dvc
+
+

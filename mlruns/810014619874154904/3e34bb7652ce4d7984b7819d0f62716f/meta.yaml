@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/HP/Desktop/stock_app/mlruns/810014619874154904/3e34bb7652ce4d7984b7819d0f62716f/artifacts
+end_time: 1728014721063
+entry_point_name: ''
+experiment_id: '810014619874154904'
+lifecycle_stage: active
+run_id: 3e34bb7652ce4d7984b7819d0f62716f
+run_name: tree
+run_uuid: 3e34bb7652ce4d7984b7819d0f62716f
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1728014700147
+status: 3
+tags: []
+user_id: HP
