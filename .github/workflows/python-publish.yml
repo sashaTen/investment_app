@@ -25,4 +25,4 @@ jobs:
 
       - name: Run tests
         run: |
-              invest\invest_app\dataTest.py      # Run your tests
+              pytest invest\invest_app\dataTest.py      # Run your tests
