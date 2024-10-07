@@ -25,4 +25,4 @@ jobs:
 
       - name: Run tests
         run: |
-                     # Run your tests
+              pytest dataTest.py        # Run your tests
