@@ -3,7 +3,7 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 import pytest 
 from scipy.sparse import csr_matrix
-from  orchestra   import load_data ,  split_data   , preprocess_text
+from  .orchestra   import load_data ,  split_data   , preprocess_text
 
 
 
