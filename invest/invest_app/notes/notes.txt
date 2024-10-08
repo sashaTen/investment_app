@@ -31,29 +31,18 @@ way  you do  with   mlflow :
     prediction = model.predict(sentiment_vectorized)
 
 
-below  is the  practice   inspiration  
-for the   zenml and  mlflow 
+*    how to    make    autoretrain  model   ? 
+def load_current_vectorizer_and_model():
+    my_runs_on_current_stack = client.list_pipeline_runs(
+        stack_id=client.active_stack_model.id,
+        user_id=client.active_user.id,
+        sort_by="desc:start_time",
+        size=10,
+    )
+
+load the   pipelines 
+the by  id   find  the  latest.
+then load the  step   correctly.
+then   look  at    server  and load the  output.
 
 
-1. Focus and Purpose
-ZenML: Primarily designed for creating reproducible, scalable, and robust ML pipelines. It emphasizes pipeline orchestration and integration with various tools and environments.
-MLflow: A comprehensive tool for managing the entire machine learning lifecycle, including experiment tracking, model versioning, and deployment.
-2. Experiment Tracking
-ZenML: Provides basic experiment tracking through its pipeline components but may not have as rich a set of features as MLflow specifically for tracking and visualizing experiments.
-MLflow: Offers a robust experiment tracking interface, allowing you to log metrics, parameters, and artifacts easily, with an intuitive UI for comparison.
-3. Model Registry
-ZenML: Focuses on building and managing pipelines rather than serving as a model registry.
-MLflow: Includes a dedicated model registry where you can manage model versions, track lineage, and deploy models seamlessly.
-4. Integration Flexibility
-ZenML: Aims to integrate various tools in the ML ecosystem, providing a standardized way to work with different libraries and frameworks.
-MLflow: Works well as a standalone tool for tracking and managing models, and it can be integrated into ZenML pipelines as needed.
-5. Deployment Features
-ZenML: Supports the orchestration of deployment workflows but may not provide the same depth of deployment capabilities as MLflow.
-MLflow: Offers model serving capabilities, allowing you to deploy models as REST APIs easily.
-6. Collaboration and Sharing
-ZenML: Focuses on the development of reproducible workflows, which helps teams collaborate on pipeline development.
-MLflow: Facilitates collaboration through experiment tracking and model sharing, making it easy for teams to work with the same models and results.
-Conclusion
-Using both ZenML and MLflow can provide a comprehensive solution for managing machine learning workflows. ZenML excels at building and orchestrating pipelines, while MLflow offers specialized tools for experiment tracking, model management, and deployment. By integrating both tools, you can enhance your machine learning project’s scalability, reproducibility, and efficiency, ensuring a smoother workflow from development to production.
-
-*   ci    /  cd    
