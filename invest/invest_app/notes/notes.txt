@@ -46,3 +46,11 @@ then load the  step   correctly.
 then   look  at    server  and load the  output.
 
 
+  '''
+    result = subprocess.run(
+        ['python', r'C:\Users\HP\Desktop\stock_app\invest\invest_app\util_functions.py'],  # Use raw string or fix path
+        capture_output=True,
+        text=True
+    )
+    print(result)
+    '''

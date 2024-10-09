@@ -14,15 +14,11 @@ def sentiment(request):
     return render(request , 'home.html')
 
 def  sentimentResult(request): 
-    '''
-    result = subprocess.run(
-        ['python', r'C:\Users\HP\Desktop\stock_app\invest\invest_app\util_functions.py'],  # Use raw string or fix path
-        capture_output=True,
-        text=True
-    )
-    print(result)
-    '''
+  
+  
     
+#  the   script  for   subproccess and the autoretrain  you   will  find  in   notes
+# all  you  need  is   just  in   copy  paste  it  here     
 # Load the latest model
     model , vectorizer   = load_current_vectorizer_and_model()
     sentiment = request.POST['sentiment']

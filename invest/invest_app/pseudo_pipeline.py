@@ -44,4 +44,13 @@ def evaluate_model(model, X_test_vec, y_test) :
     accuracy = accuracy_score(y_test, y_pred)
     f1 = f1_score(y_test, y_pred, average='weighted')
     print(f"Model Accuracy: {accuracy:.2f}")
-    return   f1
+    
+
+
+if __name__ == "__main__":
+    df =   load_data(url)
+    X_train, X_test, y_train, y_test  =  split_data(df)
+    vectorizer, X_train_vec, X_test_vec  =  preprocess_text(X_train, X_test)
+    model   = train_model(X_train_vec, y_train)
+    evaluate_model(model, X_test_vec, y_test)
+
