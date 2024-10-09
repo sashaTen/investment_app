@@ -15,14 +15,14 @@ def sentiment(request):
 
 def  sentimentResult(request): 
     '''
-     result = subprocess.run(
+    result = subprocess.run(
         ['python', r'C:\Users\HP\Desktop\stock_app\invest\invest_app\util_functions.py'],  # Use raw string or fix path
         capture_output=True,
         text=True
     )
     print(result)
     '''
-   
+    
 # Load the latest model
     model , vectorizer   = load_current_vectorizer_and_model()
     sentiment = request.POST['sentiment']
