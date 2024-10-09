@@ -3,7 +3,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.linear_model import LogisticRegression
 from sklearn.tree import DecisionTreeClassifier
-from sklearn.metrics import accuracy_score  ,  f1_score
+from sklearn.metrics import accuracy_score  
 
 
 
@@ -42,15 +42,19 @@ def train_model(X_train_vec, y_train):
 def evaluate_model(model, X_test_vec, y_test) :
     y_pred = model.predict(X_test_vec)
     accuracy = accuracy_score(y_test, y_pred)
-    f1 = f1_score(y_test, y_pred, average='weighted')
     print(f"Model Accuracy: {accuracy:.2f}")
+    return accuracy
     
 
 
 if __name__ == "__main__":
-    df =   load_data(url)
-    X_train, X_test, y_train, y_test  =  split_data(df)
-    vectorizer, X_train_vec, X_test_vec  =  preprocess_text(X_train, X_test)
-    model   = train_model(X_train_vec, y_train)
-    evaluate_model(model, X_test_vec, y_test)
+    def get_pipeline_accuracy(url):
+        df =   load_data(url)
+        X_train, X_test, y_train, y_test  =  split_data(df)
+        vectorizer, X_train_vec, X_test_vec  =  preprocess_text(X_train, X_test)
+        model   = train_model(X_train_vec, y_train)
+        accuracy = evaluate_model(model, X_test_vec, y_test)
+        return   accuracy
 
+
+    
