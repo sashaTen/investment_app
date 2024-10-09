@@ -1,6 +1,17 @@
+try:
+    # Try relative imports for Django
+    from .orchestra import zen_sentiment_analysis_pipeline
+    from .pseudo_pipeline import load_data
+except ImportError:
+    # Use absolute imports for ZenML standalone script
+    from orchestra import zen_sentiment_analysis_pipeline
+    from pseudo_pipeline import load_data
+
+# Now you can use absolute imports
+
+
 from zenml.client import Client
-from  .orchestra   import   zen_sentiment_analysis_pipeline
-from .pseudo_pipeline  import    load_data
+
 client = Client()
 
 url = 'https://raw.githubusercontent.com/surge-ai/stock-sentiment/main/sentiment.csv'
@@ -15,17 +26,12 @@ def check_number_samples(df ,  url):
         return 
     
 
- 
 
-#df   =   load_data(url)
-#check_number_samples(df ,  url)
+'''
 
-
-
-
-
-
-
+df   =   load_data(url)
+check_number_samples(df ,  url)
+'''
 def load_current_vectorizer_and_model():
     my_runs_on_current_stack = client.list_pipeline_runs(
         stack_id=client.active_stack_model.id,
