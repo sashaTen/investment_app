@@ -26,7 +26,6 @@ def check_number_samples(df ,  url):
         return 
     
 
-
 '''
 
 df   =   load_data(url)
@@ -60,3 +59,6 @@ def load_current_vectorizer_and_model():
 
 
 
+if __name__ == "__main__":
+    df   =   load_data(url)
+    check_number_samples(df ,  url)
