@@ -1,5 +1,6 @@
 from zenml.client import Client
-from  .orchestra   import   load_data     ,   zen_sentiment_analysis_pipeline
+from  .orchestra   import   zen_sentiment_analysis_pipeline
+from .pseudo_pipeline  import    load_data
 client = Client()
 
 url = 'https://raw.githubusercontent.com/surge-ai/stock-sentiment/main/sentiment.csv'

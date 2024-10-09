@@ -6,7 +6,7 @@ import pickle
 import mlflow
 import mlflow.pyfunc
 from zenml.client import Client
-from  .orchestra   import   load_data     ,   zen_sentiment_analysis_pipeline
+from  .orchestra   import   zen_sentiment_analysis_pipeline
 from .util_functions import   load_current_vectorizer_and_model
 
 
@@ -21,7 +21,7 @@ def  sentimentResult(request):
     sentiment_vectorized =  vectorizer.transform(sentiment)
     prediction = model.predict(sentiment_vectorized)
 # Output the prediction
-    return HttpResponse(f'Predicted sentiment: {prediction}')
+    return HttpResponse(f'Predicted sentiment: {prediction   , model}')
 
 
 
