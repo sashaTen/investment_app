@@ -10,6 +10,7 @@ except ImportError:
 # Now you can use absolute imports
 
 
+import pandas as pd
 from zenml.client import Client
 
 client = Client()
@@ -56,6 +57,12 @@ def load_current_vectorizer_and_model():
     model_artifact = zen_train_model_step.outputs['output'].load()
 
     return model_artifact, vectorizer_artifact
+
+
+
+
+
+
 
 
 

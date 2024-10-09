@@ -16,6 +16,17 @@ def zen_load_data(url : str) -> pd.DataFrame:
    
     df = pd.read_csv(url)
     return df
+@step
+def zen_data_cleaning(df: pd.DataFrame)->  pd.DataFrame:
+    columns_to_keep = ['Tweet Text', 'Sentiment']
+    
+    # Check if both columns exist in the DataFrame
+    missing_columns = [col for col in columns_to_keep if col not in df.columns]
+    if missing_columns:
+        raise ValueError(f"Missing columns in the DataFrame: {missing_columns}")
+    
+    # Keep only the specified columns
+    return df[columns_to_keep]
 
 # Step 2: Split data into train and test sets
 @step
@@ -53,6 +64,7 @@ def  zen_evaluate_model(model: DecisionTreeClassifier, X_test_vec: csr_matrix, y
 @pipeline
 def  zen_sentiment_analysis_pipeline(url):
     df =  zen_load_data(url)
+    df = zen_data_cleaning(df)
     X_train, X_test, y_train, y_test =  zen_split_data(df)
     vectorizer, X_train_vec, X_test_vec =  zen_preprocess_text(X_train, X_test)
     model =  zen_train_model(X_train_vec, y_train)
