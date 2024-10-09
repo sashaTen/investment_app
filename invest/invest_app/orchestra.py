@@ -60,7 +60,7 @@ def  zen_sentiment_analysis_pipeline(url):
 
 # Run the pipeline
 if __name__ == "__main__":
-    zen_sentiment_analysis_pipeline(url)
+    zen_sentiment_analysis_pipeline()
    
 
 
