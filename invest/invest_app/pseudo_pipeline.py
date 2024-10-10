@@ -6,9 +6,6 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import accuracy_score  
 
 
-
-
-
 url = 'https://raw.githubusercontent.com/surge-ai/stock-sentiment/main/sentiment.csv'
 
 def load_data(url):
@@ -32,9 +29,8 @@ def preprocess_text(X_train, X_test) :
     return vectorizer, X_train_vec, X_test_vec
 
 
-def train_model(X_train_vec, y_train):
-    model = LogisticRegression()
-    model.fit(X_train_vec, y_train)
+def train_model(X_train_vec, y_train ,model_instance):
+    model = model_instance.fit(X_train_vec, y_train)
     return model
 
 # Step 5: Evaluate the model
@@ -46,15 +42,22 @@ def evaluate_model(model, X_test_vec, y_test) :
     return accuracy
     
 
-
-if __name__ == "__main__":
-    def get_pipeline_accuracy(url):
+def get_pipeline_accuracy(url,model):
         df =   load_data(url)
         X_train, X_test, y_train, y_test  =  split_data(df)
         vectorizer, X_train_vec, X_test_vec  =  preprocess_text(X_train, X_test)
-        model   = train_model(X_train_vec, y_train)
+        model   =   train_model(X_train_vec, y_train , model_instance)
         accuracy = evaluate_model(model, X_test_vec, y_test)
         return   accuracy
+
+
+     
+if __name__ == "__main__":
+     model_instance =  LogisticRegression()
+     get_pipeline_accuracy(url , model_instance)
+   
+
+    
 
 
     
