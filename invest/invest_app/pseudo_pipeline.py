@@ -5,6 +5,11 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import accuracy_score  
 
+from zenml.client import Client
+
+artifact = Client().get_artifact_version('0a225c4e-8e9e-404c-a91a-04fc231f6e15')
+loaded_accuracy = artifact.load()
+
 
 url = 'https://raw.githubusercontent.com/surge-ai/stock-sentiment/main/sentiment.csv'
 

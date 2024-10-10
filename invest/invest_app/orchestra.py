@@ -58,7 +58,7 @@ def  zen_evaluate_model(model: DecisionTreeClassifier, X_test_vec: csr_matrix, y
     accuracy = accuracy_score(y_test, y_pred)
     f1 = f1_score(y_test, y_pred, average='weighted')
     print(f"Model Accuracy: {accuracy:.2f}")
-    return   f1
+    return   accuracy
 
 # Pipeline to connect all the steps
 @pipeline

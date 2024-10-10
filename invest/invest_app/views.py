@@ -1,5 +1,5 @@
 from django.shortcuts import render
-import   joblib
+import    joblib
 # Create your views here.
 from django.http import HttpResponse
 import pickle
@@ -31,4 +31,4 @@ def  sentimentResult(request):
 
 
 
-#     python   manage.py  runserver 
+#     python   manage.py  runserver
