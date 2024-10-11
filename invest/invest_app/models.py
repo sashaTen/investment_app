@@ -1,7 +1,8 @@
 from django.db import models
 
 class TweetSentiment(models.Model):
-    tweet_text = models.TextField()  # 'Tweet Text' can be large, so we use TextField
+    tweet_text = models.TextField()
+    prediction = models.CharField(max_length=50,  default='neutral')   # 'Tweet Text' can be large, so we use TextField
     sentiment = models.CharField(max_length=50)  # 'Sentiment' can be a short string
 
     def __str__(self):
