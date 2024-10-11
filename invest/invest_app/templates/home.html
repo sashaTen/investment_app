@@ -6,11 +6,12 @@
     <title>Document</title>
 </head>
 <body>
-    enter the  sentiment
+    enter the  tweet 
     <form action="{% url 'sentimentResult' %}" method="post">
         {% csrf_token %}
-        <label for="sentiment">sentiment:</label>
-        <input type="sentiment"  id="sentiment" name="sentiment" required><br><br>
+        <label for="tweet">text:</label>
+        <input type="tweet"  id="tweet" name="tweet" required><br><br>
+       
     
      
     </form>    <!---->

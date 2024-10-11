@@ -22,11 +22,11 @@ def  sentimentResult(request):
 # all  you  need  is   just  in   copy  paste  it  here     
 # Load the latest model
     model , vectorizer,  accuracy   = load_current_vectorizer_and_model()
-    sentiment = request.POST['sentiment']
-    sentiment =  [sentiment]
-    sentiment_vectorized =  vectorizer.transform(sentiment)
-    prediction = model.predict(sentiment_vectorized)
-    new_tweet = TweetSentiment(tweet_text=sentiment, sentiment=prediction)
+    tweet = request.POST['tweet']
+    tweet =  [tweet]
+    tweet_vectorized =  vectorizer.transform(tweet)
+    prediction = model.predict(tweet_vectorized)
+    new_tweet = TweetSentiment(tweet_text=tweet, prediction=prediction , sentiment = 'default')
     new_tweet.save()
 # Output the prediction
     return HttpResponse(f'Predicted sentiment: {prediction   , model ,  accuracy}')
