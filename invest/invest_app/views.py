@@ -9,6 +9,7 @@ from zenml.client import Client
 import subprocess
 from .util_functions import load_current_vectorizer_and_model, check_number_samples
 from  .orchestra  import  zen_sentiment_analysis_pipeline
+from .models  import TweetSentiment
 
 def sentiment(request):
     return render(request , 'home.html')
@@ -25,7 +26,8 @@ def  sentimentResult(request):
     sentiment =  [sentiment]
     sentiment_vectorized =  vectorizer.transform(sentiment)
     prediction = model.predict(sentiment_vectorized)
-    
+    new_tweet = TweetSentiment(tweet_text=sentiment, sentiment=prediction)
+    new_tweet.save()
 # Output the prediction
     return HttpResponse(f'Predicted sentiment: {prediction   , model ,  accuracy}')
 
