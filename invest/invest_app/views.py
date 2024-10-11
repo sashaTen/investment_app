@@ -20,14 +20,14 @@ def  sentimentResult(request):
 #  the   script  for   subproccess and the autoretrain  you   will  find  in   notes
 # all  you  need  is   just  in   copy  paste  it  here     
 # Load the latest model
-    model , vectorizer   = load_current_vectorizer_and_model()
+    model , vectorizer,  accuracy   = load_current_vectorizer_and_model()
     sentiment = request.POST['sentiment']
     sentiment =  [sentiment]
     sentiment_vectorized =  vectorizer.transform(sentiment)
     prediction = model.predict(sentiment_vectorized)
     
 # Output the prediction
-    return HttpResponse(f'Predicted sentiment: {prediction   , model}')
+    return HttpResponse(f'Predicted sentiment: {prediction   , model ,  accuracy}')
 
 
 

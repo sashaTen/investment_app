@@ -56,7 +56,10 @@ def load_current_vectorizer_and_model():
     zen_train_model_step = pipeline_run.steps.get('zen_train_model')
     model_artifact = zen_train_model_step.outputs['output'].load()
 
-    return model_artifact, vectorizer_artifact
+    zen_evaluate_model_step = pipeline_run.steps.get('zen_evaluate_model')
+    accuracy_artifact =   zen_evaluate_model_step.outputs['output'].load()
+
+    return model_artifact, vectorizer_artifact, accuracy_artifact 
 
 
 
