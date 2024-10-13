@@ -43,8 +43,9 @@ def  sentimentResult(request):
     sentiment  = request.POST['sentiment']
     tweet =  [tweet]
     tweet_vectorized =  vectorizer.transform(tweet)
+    prediction = model.predict(tweet_vectorized)
   
-    '''  prediction = model.predict(tweet_vectorized)
+    '''  
     new_tweet = TweetSentiment(tweet_text=tweet, prediction=prediction , sentiment = sentiment)
     new_tweet.save()
     df =   turn_database_into_dataframe()
