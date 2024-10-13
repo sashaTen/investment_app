@@ -14,10 +14,12 @@ from .models  import TweetSentiment
 def sentiment(request):
     return render(request , 'home.html')
 
+
+def    testing(request):
+    return   HttpResponse('testing')
+
+
 def  sentimentResult(request): 
-  
-  
-    
 #  the   script  for   subproccess and the autoretrain  you   will  find  in   notes
 # all  you  need  is   just  in   copy  paste  it  here     
 # Load the latest model
@@ -35,3 +37,6 @@ def  sentimentResult(request):
 
 
 #     python   manage.py  runserver
+
+
+
