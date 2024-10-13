@@ -7,7 +7,7 @@ import mlflow
 import mlflow.pyfunc
 from zenml.client import Client
 import subprocess
-from .util_functions import load_current_vectorizer_and_model, auto_retrain_on_new_data
+from .util_functions import load_current_vectorizer_and_model, auto_retrain_on_new_data ,  turn_database_into_dataframe
 from  .orchestra  import  zen_sentiment_analysis_pipeline
 from .models  import TweetSentiment
 from .pseudo_pipeline  import  load_data
@@ -46,8 +46,9 @@ def  sentimentResult(request):
     prediction = model.predict(tweet_vectorized)
     new_tweet = TweetSentiment(tweet_text=tweet, prediction=prediction , sentiment = sentiment)
     new_tweet.save()
+    df =   turn_database_into_dataframe()
 # Output the prediction
-    return HttpResponse(f'Predicted sentiment: {prediction   , model ,  accuracy}')
+    return HttpResponse(f'Predicted sentiment: {prediction   , model ,  accuracy ,   df.head(0)}')
 
 
 

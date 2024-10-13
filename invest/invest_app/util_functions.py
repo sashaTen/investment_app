@@ -2,7 +2,7 @@
     # Try relative imports for Django
 from .orchestra import zen_sentiment_analysis_pipeline
 from .pseudo_pipeline import load_data
-
+from  .models  import  TweetSentiment
 
 # Now you can use absolute imports
 
@@ -72,7 +72,12 @@ def  auto_retrain_on_new_data(df):
       print('not   enough  samples')
       return 
 
-
-
+def  turn_database_into_dataframe():
+   queryset = TweetSentiment.objects.all()
+# Convert the QuerySet to a list of dictionaries
+   data = list(queryset.values())
+# Create a DataFrame from the list of dictionaries
+   df = pd.DataFrame(data)
+   return   df 
 if __name__ == "__main__":
    pass 
