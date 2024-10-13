@@ -22,14 +22,20 @@ def sentiment(request):
 def    testing(request):
     url = 'https://raw.githubusercontent.com/surge-ai/stock-sentiment/main/sentiment.csv'
     df =  load_data(url)
-    auto_retrain_on_new_data(df)
-    return   HttpResponse(df.head(1))
+    #auto_retrain_on_new_data(df)
+    for index, row in df.iterrows():
+      TweetSentiment.objects.create(
+        tweet_text=row['Tweet Text'],
+        sentiment=row['Sentiment']
+    )
+
+    return   HttpResponse(df.head(0))
 
 
 def  sentimentResult(request): 
 #  the   script  for   subproccess and the autoretrain  you   will  find  in   notes
-# all  you  need  is   just  in   copy  paste  it  here     
-# Load the latest model
+#  all  you  need  is   just  in   copy  paste  it  here     
+#  Load the latest model
    
    
     model , vectorizer,  accuracy   = load_current_vectorizer_and_model()

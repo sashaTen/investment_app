@@ -75,5 +75,4 @@ def  auto_retrain_on_new_data(df):
 
 
 if __name__ == "__main__":
-    df   =   load_data(url)
-    check_number_samples(df ,  url)
+   pass 
