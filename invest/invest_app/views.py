@@ -7,22 +7,31 @@ import mlflow
 import mlflow.pyfunc
 from zenml.client import Client
 import subprocess
-from .util_functions import load_current_vectorizer_and_model, check_number_samples
+from .util_functions import load_current_vectorizer_and_model, auto_retrain_on_new_data
 from  .orchestra  import  zen_sentiment_analysis_pipeline
 from .models  import TweetSentiment
+from .pseudo_pipeline  import  load_data
+
+
+
 
 def sentiment(request):
     return render(request , 'home.html')
 
 
 def    testing(request):
-    return   HttpResponse('testing')
+    url = 'https://raw.githubusercontent.com/surge-ai/stock-sentiment/main/sentiment.csv'
+    df =  load_data(url)
+    auto_retrain_on_new_data(df)
+    return   HttpResponse(df.head(1))
 
 
 def  sentimentResult(request): 
 #  the   script  for   subproccess and the autoretrain  you   will  find  in   notes
 # all  you  need  is   just  in   copy  paste  it  here     
 # Load the latest model
+   
+   
     model , vectorizer,  accuracy   = load_current_vectorizer_and_model()
     tweet = request.POST['tweet']
     sentiment  = request.POST['sentiment']

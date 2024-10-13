@@ -4,6 +4,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.linear_model import LogisticRegression
 from sklearn.tree import DecisionTreeClassifier
+from sklearn.ensemble import RandomForestClassifier
 from sklearn import svm
 from sklearn.metrics import accuracy_score  ,  f1_score
 from typing import Tuple
@@ -46,18 +47,17 @@ def  zen_preprocess_text(X_train: pd.Series, X_test: pd.Series) -> Tuple[CountVe
 
 # Step 4: Train the model
 @step
-def  zen_train_model(X_train_vec: csr_matrix, y_train: pd.Series) ->DecisionTreeClassifier:
-    model = DecisionTreeClassifier()
+def  zen_train_model(X_train_vec: csr_matrix, y_train: pd.Series) ->LogisticRegression:
+    model = LogisticRegression()
     model.fit(X_train_vec, y_train)
     return model
 
 # Step 5: Evaluate the model
 @step
-def  zen_evaluate_model(model: DecisionTreeClassifier, X_test_vec: csr_matrix, y_test: pd.Series) -> float:
+def  zen_evaluate_model(model:LogisticRegression, X_test_vec: csr_matrix, y_test: pd.Series) -> float:
     y_pred = model.predict(X_test_vec)
     accuracy = accuracy_score(y_test, y_pred)
     f1 = f1_score(y_test, y_pred, average='weighted')
-    print(f"Model Accuracy: {accuracy:.2f}")
     return   accuracy
 
 # Pipeline to connect all the steps

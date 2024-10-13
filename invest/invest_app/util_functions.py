@@ -1,11 +1,8 @@
-try:
+
     # Try relative imports for Django
-    from .orchestra import zen_sentiment_analysis_pipeline
-    from .pseudo_pipeline import load_data
-except ImportError:
-    # Use absolute imports for ZenML standalone script
-    from orchestra import zen_sentiment_analysis_pipeline
-    from pseudo_pipeline import load_data
+from .orchestra import zen_sentiment_analysis_pipeline
+from .pseudo_pipeline import load_data
+
 
 # Now you can use absolute imports
 
@@ -17,14 +14,14 @@ client = Client()
 
 url = 'https://raw.githubusercontent.com/surge-ai/stock-sentiment/main/sentiment.csv'
 
-def check_number_samples(df ,  url):
+def check_number_samples(df):
     if  df.shape[0]> 490:
-        print('the   autoretrain  is  caused ')
-        zen_sentiment_analysis_pipeline(url)
-        return    
+        print('the  number   is more  than  460')
+        return True
+            
     else :
         print('not   enough samples  for  retrain ' ,    df.shape[0])
-        return 
+        return False
     
 
 '''
@@ -65,7 +62,15 @@ def load_current_vectorizer_and_model():
 
 
 
+def  auto_retrain_on_new_data(df):
+    if check_number_samples(df):
+      zen_sentiment_analysis_pipeline(url)
+      print('you caused   the   auto - retrain')
+      return   
 
+    else :
+      print('not   enough  samples')
+      return 
 
 
 
