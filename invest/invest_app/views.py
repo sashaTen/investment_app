@@ -24,6 +24,9 @@ def    testing(request):
 # Create a DataFrame from the list of dictionaries
     #df = turn_database_into_dataframe()
     sample_count =  Count_samples_for_retrain.objects.first()
+    sample_count.samples_number= sample_count.samples_number+1
+    sample_count.save()
+
 
 
     return   HttpResponse( sample_count.samples_number)
