@@ -10,12 +10,20 @@ from sklearn.metrics import accuracy_score  ,  f1_score
 from typing import Tuple
 import random
 from scipy.sparse import csr_matrix
-
+from .models import   TweetSentiment
 # Step 1: Load data
 @step
-def zen_load_data(url : str) -> pd.DataFrame:
+def zen_load_data() -> pd.DataFrame:
    
-    df = pd.read_csv(url)
+    queryset = TweetSentiment.objects.all()
+# Convert the QuerySet to a list of dictionaries
+    data = list(queryset.values())
+# Create a DataFrame from the list of dictionaries
+    df = pd.DataFrame(data)
+    df = df.rename(columns={
+        'tweet_text': 'Tweet Text',
+        'sentiment': 'Sentiment'
+    })
     return df
 @step
 def zen_data_cleaning(df: pd.DataFrame)->  pd.DataFrame:
@@ -62,8 +70,8 @@ def  zen_evaluate_model(model:LogisticRegression, X_test_vec: csr_matrix, y_test
 
 # Pipeline to connect all the steps
 @pipeline
-def  zen_sentiment_analysis_pipeline(url):
-    df =  zen_load_data(url)
+def  zen_sentiment_analysis_pipeline():
+    df =  zen_load_data()
     df = zen_data_cleaning(df)
     X_train, X_test, y_train, y_test =  zen_split_data(df)
     vectorizer, X_train_vec, X_test_vec =  zen_preprocess_text(X_train, X_test)

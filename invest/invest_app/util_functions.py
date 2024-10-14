@@ -14,14 +14,7 @@ client = Client()
 
 url = 'https://raw.githubusercontent.com/surge-ai/stock-sentiment/main/sentiment.csv'
 
-def check_number_samples(df):
-    if  df.shape[0]> 490:
-        print('the  number   is more  than  460')
-        return True
-            
-    else :
-        print('not   enough samples  for  retrain ' ,    df.shape[0])
-        return False
+
     
 
 '''
@@ -61,16 +54,9 @@ def load_current_vectorizer_and_model():
 
 
 
+ 
 
-def  auto_retrain_on_new_data(df):
-    if check_number_samples(df):
-      zen_sentiment_analysis_pipeline(url)
-      print('you caused   the   auto - retrain')
-      return   
-
-    else :
-      print('not   enough  samples')
-      return 
+  
 
 def  turn_database_into_dataframe():
    queryset = TweetSentiment.objects.all()
@@ -78,6 +64,10 @@ def  turn_database_into_dataframe():
    data = list(queryset.values())
 # Create a DataFrame from the list of dictionaries
    df = pd.DataFrame(data)
+   df = df.rename(columns={
+        'tweet_text': 'Tweet Text',
+        'sentiment': 'Sentiment'
+    })
    return   df 
 if __name__ == "__main__":
    pass 

@@ -6,8 +6,7 @@ import pickle
 import mlflow
 import mlflow.pyfunc
 from zenml.client import Client
-import subprocess
-from .util_functions import load_current_vectorizer_and_model, auto_retrain_on_new_data ,  turn_database_into_dataframe
+from .util_functions import load_current_vectorizer_and_model,   turn_database_into_dataframe
 from  .orchestra  import  zen_sentiment_analysis_pipeline
 from .models  import TweetSentiment ,  Count_samples_for_retrain
 from .pseudo_pipeline  import  load_data
@@ -20,16 +19,11 @@ def sentiment(request):
 
 
 def    testing(request):
+    zen_sentiment_analysis_pipeline()
     
 # Create a DataFrame from the list of dictionaries
     #df = turn_database_into_dataframe()
-    sample_count =  Count_samples_for_retrain.objects.first()
-    sample_count.samples_number= sample_count.samples_number+1
-    sample_count.save()
-
-
-
-    return   HttpResponse( sample_count.samples_number)
+    return   HttpResponse( 'hrllo ')
 
 
 def  sentimentResult(request): 
@@ -54,7 +48,7 @@ def  sentimentResult(request):
    
 # Output the prediction
    # return HttpResponse(f'Predicted sentiment: {prediction   , model ,  accuracy }')
-    return HttpResponse(f'Predicted sentiment: {df.head()}')
+    return HttpResponse(f'Predicted sentiment: {df.columns}')
 
 
 

@@ -69,4 +69,9 @@ then   look  at    server  and load the  output.
     return   HttpResponse(df.head(0))
     --------------
 
-    
+    -------------grow   numbrt  of  sample   count 
+    .
+     sample_count =  Count_samples_for_retrain.objects.first()
+    sample_count.samples_number= sample_count.samples_number+1
+    sample_count.save()
+    ----------
