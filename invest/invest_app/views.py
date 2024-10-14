@@ -1,5 +1,5 @@
 from django.shortcuts import render
-import    joblib
+import    pandas  as  pd 
 # Create your views here.
 from django.http import HttpResponse
 import pickle
@@ -9,7 +9,7 @@ from zenml.client import Client
 import subprocess
 from .util_functions import load_current_vectorizer_and_model, auto_retrain_on_new_data ,  turn_database_into_dataframe
 from  .orchestra  import  zen_sentiment_analysis_pipeline
-from .models  import TweetSentiment
+from .models  import TweetSentiment ,  Count_samples_for_retrain
 from .pseudo_pipeline  import  load_data
 
 
@@ -20,16 +20,13 @@ def sentiment(request):
 
 
 def    testing(request):
-    url = 'https://raw.githubusercontent.com/surge-ai/stock-sentiment/main/sentiment.csv'
-    df =  load_data(url)
-    #auto_retrain_on_new_data(df)
-    for index, row in df.iterrows():
-      TweetSentiment.objects.create(
-        tweet_text=row['Tweet Text'],
-        sentiment=row['Sentiment']
-    )
+    
+# Create a DataFrame from the list of dictionaries
+    #df = turn_database_into_dataframe()
+    sample_count =  Count_samples_for_retrain.objects.first()
 
-    return   HttpResponse(df.head(0))
+
+    return   HttpResponse( sample_count.samples_number)
 
 
 def  sentimentResult(request): 
@@ -38,21 +35,23 @@ def  sentimentResult(request):
 #  Load the latest model
    
    
+   
+    df =   turn_database_into_dataframe()
+    '''  
     model , vectorizer,  accuracy   = load_current_vectorizer_and_model()
     tweet = request.POST['tweet']
     sentiment  = request.POST['sentiment']
     tweet =  [tweet]
     tweet_vectorized =  vectorizer.transform(tweet)
     prediction = model.predict(tweet_vectorized)
-  
-    '''  
     new_tweet = TweetSentiment(tweet_text=tweet, prediction=prediction , sentiment = sentiment)
     new_tweet.save()
     df =   turn_database_into_dataframe()
     print(df.head())'''
    
 # Output the prediction
-    return HttpResponse(f'Predicted sentiment: {prediction   , model ,  accuracy }')
+   # return HttpResponse(f'Predicted sentiment: {prediction   , model ,  accuracy }')
+    return HttpResponse(f'Predicted sentiment: {df.head()}')
 
 
 

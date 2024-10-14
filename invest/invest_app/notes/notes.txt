@@ -54,3 +54,19 @@ then   look  at    server  and load the  output.
     )
     print(result)
     '''
+--------
+
+    def    testing(request):
+    url = 'https://raw.githubusercontent.com/surge-ai/stock-sentiment/main/sentiment.csv'
+    df =  load_data(url)
+    #auto_retrain_on_new_data(df)
+    for index, row in df.iterrows():
+      TweetSentiment.objects.create(
+        tweet_text=row['Tweet Text'],
+        sentiment=row['Sentiment']
+    )
+
+    return   HttpResponse(df.head(0))
+    --------------
+
+    

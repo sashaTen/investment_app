@@ -7,3 +7,9 @@ class TweetSentiment(models.Model):
 
     def __str__(self):
         return f"{self.tweet_text[:50]} - {self.sentiment}"  # Shortened display
+
+
+
+
+class Count_samples_for_retrain(models.Model):
+    samples_number =   models.IntegerField()
