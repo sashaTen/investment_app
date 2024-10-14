@@ -31,9 +31,14 @@ def  sentimentResult(request):
 #  all  you  need  is   just  in   copy  paste  it  here     
 #  Load the latest model
    
+    model , vectorizer,  accuracy   = load_current_vectorizer_and_model()
+    tweet = request.POST['tweet']
+    sentiment  = request.POST['sentiment']
+    tweet =  [tweet]
+    tweet_vectorized =  vectorizer.transform(tweet)
+    prediction = model.predict(tweet_vectorized)
    
    
-    df =   turn_database_into_dataframe()
     '''  
     model , vectorizer,  accuracy   = load_current_vectorizer_and_model()
     tweet = request.POST['tweet']
@@ -47,8 +52,8 @@ def  sentimentResult(request):
     print(df.head())'''
    
 # Output the prediction
-   # return HttpResponse(f'Predicted sentiment: {prediction   , model ,  accuracy }')
-    return HttpResponse(f'Predicted sentiment: {df.columns}')
+    return HttpResponse(f'Predicted sentiment: {prediction   , model ,  accuracy }')
+    
 
 
 
