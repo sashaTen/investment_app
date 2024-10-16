@@ -37,6 +37,9 @@ def  sentimentResult(request):
     tweet =  [tweet]
     new_tweet = TweetSentiment(tweet_text=tweet, prediction=prediction , sentiment = sentiment)
     new_tweet.save()
+    sample_count =  Count_samples_for_retrain.objects.first()
+    sample_count.samples_number= sample_count.samples_number+1
+    sample_count.save()
     df =   turn_database_into_dataframe(10)
     print(df.head(2))
    
@@ -53,7 +56,7 @@ def  sentimentResult(request):
     print(df.head())'''
    
 # Output the prediction
-    return HttpResponse('Predicted sentiment')
+    return HttpResponse(sample_count)
     
 
 
