@@ -48,6 +48,8 @@ def  sentimentResult(request):
     if (sample_count.samples_number % 450 == 0):
         print(sample_count.samples_number,   '   updated' )
         zen_sentiment_analysis_pipeline()
+        sample_count.samples_number = 0
+        sample_count.save()
     df =   turn_database_into_dataframe(10)
     
    
