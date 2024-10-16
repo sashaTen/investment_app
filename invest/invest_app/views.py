@@ -44,8 +44,12 @@ def  sentimentResult(request):
     if (new_tweet_db_length>tweet_db_length):
         sample_count.samples_number= sample_count.samples_number+1
         sample_count.save()
+
+    if (sample_count.samples_number % 450 == 0):
+        print(sample_count.samples_number,   '   updated' )
+        zen_sentiment_analysis_pipeline()
     df =   turn_database_into_dataframe(10)
-    print(df.head(2))
+    
    
     '''  
     model , vectorizer,  accuracy   = load_current_vectorizer_and_model()

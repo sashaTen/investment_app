@@ -15,7 +15,11 @@ from .models import   TweetSentiment
 @step
 def zen_load_data() -> pd.DataFrame:
    
-    queryset = TweetSentiment.objects.all()
+   
+    queryset = TweetSentiment.objects.all().order_by('-id')[:450]
+    
+    # Convert the QuerySet to a list of dictionaries
+    data = list(queryset.values())
 # Convert the QuerySet to a list of dictionaries
     data = list(queryset.values())
 # Create a DataFrame from the list of dictionaries
