@@ -35,11 +35,15 @@ def  sentimentResult(request):
     tweet = request.POST['tweet']
     sentiment  = request.POST['sentiment']
     tweet =  [tweet]
+    sample_count =  Count_samples_for_retrain.objects.first()
+    tweet_db_length= TweetSentiment.objects.count()
     new_tweet = TweetSentiment(tweet_text=tweet, prediction=prediction , sentiment = sentiment)
     new_tweet.save()
-    sample_count =  Count_samples_for_retrain.objects.first()
-    sample_count.samples_number= sample_count.samples_number+1
-    sample_count.save()
+    new_tweet_db_length = TweetSentiment.objects.count()
+    
+    if (new_tweet_db_length>tweet_db_length):
+        sample_count.samples_number= sample_count.samples_number+1
+        sample_count.save()
     df =   turn_database_into_dataframe(10)
     print(df.head(2))
    
@@ -56,7 +60,7 @@ def  sentimentResult(request):
     print(df.head())'''
    
 # Output the prediction
-    return HttpResponse(sample_count)
+    return HttpResponse(sample_count.samples_number)
     
 
 
