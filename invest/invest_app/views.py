@@ -30,13 +30,14 @@ def  sentimentResult(request):
 #  the   script  for   subproccess and the autoretrain  you   will  find  in   notes
 #  all  you  need  is   just  in   copy  paste  it  here     
 #  Load the latest model
-   
-    prediction = 'positive'
+    model , vectorizer,  accuracy   = load_current_vectorizer_and_model()
     tweet = request.POST['tweet']
     sentiment  = request.POST['sentiment']
     tweet =  [tweet]
     sample_count =  Count_samples_for_retrain.objects.first()
     tweet_db_length= TweetSentiment.objects.count()
+    tweet_vectorized =  vectorizer.transform(tweet)
+    prediction = model.predict(tweet_vectorized)
     new_tweet = TweetSentiment(tweet_text=tweet, prediction=prediction , sentiment = sentiment)
     new_tweet.save()
     new_tweet_db_length = TweetSentiment.objects.count()
@@ -45,7 +46,7 @@ def  sentimentResult(request):
         sample_count.samples_number= sample_count.samples_number+1
         sample_count.save()
 
-    if (sample_count.samples_number % 450 == 0):
+    if (sample_count.samples_number % 500 == 0):
         print(sample_count.samples_number,   '   updated' )
         zen_sentiment_analysis_pipeline()
         sample_count.samples_number = 0
@@ -66,7 +67,7 @@ def  sentimentResult(request):
     print(df.head())'''
    
 # Output the prediction
-    return HttpResponse(sample_count.samples_number)
+    return HttpResponse(f'samples  count   :   {sample_count.samples_number} ,  prediction is   :{prediction} ,   the  model is  : {model}' )
     
 
 
