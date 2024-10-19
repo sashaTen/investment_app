@@ -77,3 +77,5 @@ then   look  at    server  and load the  output.
     sample_count.samples_number= sample_count.samples_number+1
     sample_count.save()
     ----------
+
+    nest  step   maybe the  cheking the new  model from  experementations 
