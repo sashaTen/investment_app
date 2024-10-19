@@ -6,11 +6,11 @@ import pickle
 import mlflow
 import mlflow.pyfunc
 from zenml.client import Client
-from .util_functions import load_current_vectorizer_and_model,   turn_database_into_dataframe
+from .util_functions import load_current_vectorizer_and_model
 from  .orchestra  import  zen_sentiment_analysis_pipeline
 from .models  import TweetSentiment ,  Count_samples_for_retrain
 from .pseudo_pipeline  import  load_data
-
+from .utilities2   import   turn_database_into_dataframe
 
 
 
@@ -22,8 +22,9 @@ def    testing(request):
     zen_sentiment_analysis_pipeline()
     
 # Create a DataFrame from the list of dictionaries
-    #df = turn_database_into_dataframe()
-    return   HttpResponse( 'hrllo ')
+    #df = turn_database_into_dataframe(50)
+    
+    return   HttpResponse( 'ggg')
 
 
 def  sentimentResult(request): 
@@ -51,7 +52,7 @@ def  sentimentResult(request):
         zen_sentiment_analysis_pipeline()
         sample_count.samples_number = 0
         sample_count.save()
-    df =   turn_database_into_dataframe(10)
+    
     
    
     '''  

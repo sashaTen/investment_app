@@ -11,23 +11,11 @@ from typing import Tuple
 import random
 from scipy.sparse import csr_matrix
 from .models import   TweetSentiment
+from .utilities2  import   turn_database_into_dataframe
 # Step 1: Load data
 @step
 def zen_load_data() -> pd.DataFrame:
-   
-   
-    queryset = TweetSentiment.objects.all().order_by('-id')[:450]
-    
-    # Convert the QuerySet to a list of dictionaries
-    data = list(queryset.values())
-# Convert the QuerySet to a list of dictionaries
-    data = list(queryset.values())
-# Create a DataFrame from the list of dictionaries
-    df = pd.DataFrame(data)
-    df = df.rename(columns={
-        'tweet_text': 'Tweet Text',
-        'sentiment': 'Sentiment'
-    })
+    df = turn_database_into_dataframe(450)
     return df
 @step
 def zen_data_cleaning(df: pd.DataFrame)->  pd.DataFrame:
@@ -59,14 +47,14 @@ def  zen_preprocess_text(X_train: pd.Series, X_test: pd.Series) -> Tuple[CountVe
 
 # Step 4: Train the model
 @step
-def  zen_train_model(X_train_vec: csr_matrix, y_train: pd.Series) ->LogisticRegression:
-    model = LogisticRegression()
+def  zen_train_model(X_train_vec: csr_matrix, y_train: pd.Series) ->RandomForestClassifier:
+    model = RandomForestClassifier()
     model.fit(X_train_vec, y_train)
     return model
 
 # Step 5: Evaluate the model
 @step
-def  zen_evaluate_model(model:LogisticRegression, X_test_vec: csr_matrix, y_test: pd.Series) -> float:
+def  zen_evaluate_model(model:RandomForestClassifier, X_test_vec: csr_matrix, y_test: pd.Series) -> float:
     y_pred = model.predict(X_test_vec)
     accuracy = accuracy_score(y_test, y_pred)
     f1 = f1_score(y_test, y_pred, average='weighted')
