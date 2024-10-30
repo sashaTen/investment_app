@@ -184,3 +184,53 @@ print('SIMULATIONS RESULT:')
 print('-'*80)
 print(simulations_df.head())
 print('-'*80)
+
+
+
+
+
+----------
+from transformers import T5Tokenizer, T5ForConditionalGeneration
+from sentence_transformers import SentenceTransformer, util
+import torch
+
+# Load T5-small for generation
+tokenizer = T5Tokenizer.from_pretrained("t5-small")
+model = T5ForConditionalGeneration.from_pretrained("t5-small")
+
+# Load a simple sentence transformer for retrieval
+retriever = SentenceTransformer('all-MiniLM-L6-v2')
+
+# Simulated knowledge base (very small)
+documents = [
+    "Apple is a leading technology company known for its iPhones and Macs.",
+    "Tesla focuses on electric vehicles and renewable energy solutions.",
+    "Google is a major player in search engines and cloud computing.",
+    "Amazon leads in e-commerce and offers cloud services through AWS.",
+    "Nvidia specializes in graphics cards and AI technology."
+]
+
+# Step 1: Encode the documents for similarity search
+doc_embeddings = retriever.encode(documents, convert_to_tensor=True)
+
+# User Query
+query = "Which company focuses on electric cars?"
+
+# Step 2: Retrieve the most relevant document
+query_embedding = retriever.encode(query, convert_to_tensor=True)
+scores = util.cos_sim(query_embedding, doc_embeddings)
+best_match = torch.argmax(scores)  # Get the best matching document index
+retrieved_doc = documents[best_match]
+
+print(f"Retrieved Document: {retrieved_doc}")
+
+# Step 3: Format input for T5-small
+input_text = f"question: {query} context: {retrieved_doc}"
+input_ids = tokenizer(input_text, return_tensors="pt").input_ids
+
+# Step 4: Generate the answer
+output = model.generate(input_ids, max_length=50, num_beams=2, early_stopping=True)
+answer = tokenizer.decode(output[0], skip_special_tokens=True)
+
+print(f"Generated Answer: {answer}")
+---------------
