@@ -11,7 +11,7 @@ from  .orchestra  import  zen_sentiment_analysis_pipeline
 from .models  import TweetSentiment ,  Count_samples_for_retrain
 from .pseudo_pipeline  import  load_data
 from .utilities2   import   turn_database_into_dataframe
-
+from transformers import T5Tokenizer, T5ForConditionalGeneration
 
 
 def sentiment(request):
@@ -19,12 +19,29 @@ def sentiment(request):
 
 
 def    testing(request):
-    zen_sentiment_analysis_pipeline()
-    
+   # zen_sentiment_analysis_pipeline()
+   
+# Load the T5-small model and tokenizer
+    tokenizer = T5Tokenizer.from_pretrained('t5-small')
+    model = T5ForConditionalGeneration.from_pretrained('t5-small')
+
+    # Define input text (for summarization task)
+    input_text = "summarize: The stock market performed well today with major indexes rising."
+
+    # Tokenize the input text
+    input_ids = tokenizer(input_text, return_tensors='pt').input_ids
+
+    # Generate the summary
+    outputs = model.generate(input_ids, max_length=50, num_beams=2, early_stopping=True)
+
+    # Decode and print the output
+    summary = tokenizer.decode(outputs[0], skip_special_tokens=True)
+   # print(summary)
+        
 # Create a DataFrame from the list of dictionaries
     #df = turn_database_into_dataframe(50)
     
-    return   HttpResponse( 'ggg')
+    return   HttpResponse( summary)
 
 
 def  sentimentResult(request): 
